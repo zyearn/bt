@@ -14,4 +14,6 @@
 *~
 *.fdb_latexmk
 diss.pdf
-temptest.pdf
+temptest.*
+README.mkd
+README.pdf
