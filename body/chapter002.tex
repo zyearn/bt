@@ -18,6 +18,16 @@ WFD（whole file Detection）是以整个文件为查找粒度的检测重复数
 
 这个方法的优点是非常简单，实现起来非常的容易。但是在实际运用中会暴露很多严重的问题，最典型的就是插入问题和删除问题。两个相同的文件，若在第一个文件开头插入了若干个字节，这个算法将判定这两个文件是完全不相同的文件，这显然是不符合现实的。删除问题也面临着同样的困境，若在第一个文件开头删除了若干个字节，但其它的文件内容保持不变，那么这个算法也将存储两份拷贝。其次，每个文件的大小不同，对于一个系统而言，知道输入文件的规模将大大减小复杂性和提高效率。
 
+\begin{figure}[!hbp]
+%\centering
+    \begin{minipage}[b]{1\textwidth}
+    \captionstyle{\centering}
+    \centering
+    \includegraphics[origin=br,width=15cm]{chap2/wfd.png}
+    \bicaption[fig:wfd]{xxx}{WFD技术.}{Fig}{WFD}
+    \end{minipage}     
+\end{figure}
+
 \section{简单分块}
 \label{sec:simpleblock}
 
@@ -25,6 +35,15 @@ WFD（whole file Detection）是以整个文件为查找粒度的检测重复数
 
 这个方法的主要问题是当两个文件只有一个byte不同时，那么将无法检测出重复数据。比如想象这样一种情景，一个文件被复制了，然后在它的开头任意添加了几个bytes的数据。这些添加的字节导致了整个文件块内容的偏移，导致所有分块的边界混乱了。一个相似的例子是当有几个bytes被删除的时候。修改文件的所有分块将不和任意表中的分块相同，所以文件中即使有绝大部分是相同的，但仍然要存储两份拷贝。
 
+\begin{figure}[!hbp]
+%\centering
+    \begin{minipage}[b]{1\textwidth}
+    \captionstyle{\centering}
+    \centering
+    \includegraphics[origin=br,width=15cm]{chap2/fsp.png}
+    \bicaption[fig:fsp]{xxx}{FSP技术.}{Fig}{FSP}
+    \end{minipage}     
+\end{figure}
 \section{内容块方法}
 \label{sec:contentchunk}
 
@@ -36,6 +55,16 @@ WFD（whole file Detection）是以整个文件为查找粒度的检测重复数
 
 当文件被分块以后，计算每个分块的SHA1哈希值并和之前保存的哈希值比较以检测重复数据。
 
+\begin{figure}[!hbp]
+%\centering
+    \begin{minipage}[b]{1\textwidth}
+    \captionstyle{\centering}
+    \centering
+    \includegraphics[origin=br,width=15cm]{chap2/ccm.png}
+    \bicaption[fig:ccm]{xxx}{CCM技术.}{Fig}{CCM}
+    \end{minipage}
+\end{figure}
+
 \section{滑动块方法}
 \label{sec:slidingblock}
 
@@ -45,6 +74,16 @@ WFD（whole file Detection）是以整个文件为查找粒度的检测重复数
 
 滑动块方法通过检查每个分块长度的文件块来解决插入问题。如果一小段比特被插入到文件中，只有这个位置周围的分块将发生变化，变化分块的下一块分块将被检测出来，并且被算法所匹配到。相似的，删除一小段比特的文件，变化分块后面的分块将依旧被这个算法检测出来。
 
+\begin{figure}[!hbp]
+%\centering
+    \begin{minipage}[b]{1\textwidth}
+    \captionstyle{\centering}
+    \centering
+    \includegraphics[origin=br,width=15cm]{chap2/sbm.png}
+    \bicaption[fig:sbm]{xxx}{SBM技术.}{Fig}{SBM}
+    \end{minipage}
+\end{figure}
+
 \section{小结}
-本节主要介绍了重复数据检测的四种方法，文献[5]采用了大量的数据集评估了全文件检测、简单分块、内容快方法检测相同数据的效果，并给出了最终实验的对比图。。。。
 \label{sec:relatedwork}
+本节主要介绍了重复数据检测的四种方法，文献[5]采用了大量的数据集评估了全文件检测、简单分块、内容快方法检测相同数据的效果，并给出了最终实验的对比图。。。。
