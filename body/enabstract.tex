@@ -1,0 +1,25 @@
+%%==================================================
+%% abstract.tex for SJTU Master Thesis
+%% based on CASthesis
+%% modified by wei.jianwen@gmail.com
+%% version: 0.3a
+%% Encoding: UTF-8
+%% last update: Dec 5th, 2010
+%%==================================================
+
+\begin{englishabstract}
+
+    With the development of today's Internet-scale and technology, the data capacity is growing at a fast rate. The research from the international data company(IDC) implies that by 2008 the amount of data was 0.8ZB, by 2009 the amount of data was 1.2ZB and by 2011 the amount of data reached up to 1.82ZB, which equals to the amount if everyone in the world generated more than 200GB data. We have entered a world of big data, with the rapid growing of data needed management. A research from IBM shows that among all the data in the human world, 90\% of them are generated in the last two years, and it is estimated that by 2020, the amount of data is 44 times larger than what we have today.
+
+    In the background of such situation, there are many duplicated data in the Internet, causing duplicated uploading and duplicated storage which will waste plenty of Internet flow and storage. The topic of our project will focus on how to find out and deduplicate the data, and we also will improve the existing method and propose a Innovative method to solve this kind of question. Our main work and innovation are as follows.
+
+\begin{enumerate}
+    \item we compare the existing methods in the industry and survey the technique used by some well-known companies. We analyze these methods and give some shortcomings. For example, with the growing amount of data, the hash method used by some algorithms is vulnerable in some collision attacks. MD5 is cracked by professor Xiaoyun Wang in 2004. What's more, all these methods can not used to calculate the similarity of two files, making them not sutiable for all situatios. We innovatively propose a similarity judgement of file based on FFT.
+
+    \item we propose a new data deduplication method based on FFT. It is different from the traditional methods because we provide a system parameter $\epsilon$ to adapt to nearly all situations. The main technique in this algorithm involves the preprocessing, the meaning of applying FFT to the file, the similarity judgement of N dimention array. In chapter four we will discuss the archtecture and the algorithm itself in detail. This algorithm makes all data deduplication scenarios possible.
+
+    \item we implement our prototype based on Client/Server framework to provide the basic services to users. we use nodejs to implement the web server, C++ to implement the core calculating module and V8 engines to enable the communication between javascript and C++.
+\end{enumerate}
+
+  \englishkeywords{\large data deduplication, big data, FFT, prototype implementation}
+\end{englishabstract}
