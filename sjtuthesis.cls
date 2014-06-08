@@ -47,6 +47,9 @@
 %% 选择编译
 \RequirePackage{ifthen}
 
+%页眉页脚控制
+\RequirePackage{fancyhdr}
+
 %% check pdfTeX mode
 \RequirePackage{ifpdf}
 
@@ -168,8 +171,8 @@
 \hypersetup{
   bookmarksnumbered,%
   colorlinks,%
-  linkcolor=blue,%
-  citecolor=blue,%
+  linkcolor=black,%
+  citecolor=black,%
   plainpages=false,%
   pdfstartview=FitH
 }
@@ -227,30 +230,43 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-      
-\songti\zihao{-3}\sjtu@label@statement
-
-    \vskip \stretch{1}
-       {\heiti\zihao{3} \sjtu@value@title}
-    \vskip \stretch{1}
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[angle=0,origin=br,width=13cm]{sjtu.jpg}
+\end{figure}
+\heiti\zihao{-2}\sjtu@label@sjtu
+\vskip 15pt
+\kaishu\zihao{1}\sjtu@label@statement
+\vskip 5pt
+\heiti\zihao{-2}\sjtu@label@bacheloreng
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[angle=0,origin=br,width=4cm]{sjtubadge.png}
+\end{figure}
+    \vskip 20pt
+    \begin{tabular}{ll}
+    \huge{\kaishu\sjtu@label@title} &\kaishu
+\sjtuunderline[350pt]{\sjtu@value@title}
+    \end{tabular}
+    \vskip 5pt
     {\fangsong\zihao{4}}
     \def\tabcolsep{1pt}
-    \def\arraystretch{1.5}
+    \def\arraystretch{1}
     \begin{tabular}{lc}
-      \heiti\sjtu@label@author &\songti
+      \kaishu\sjtu@label@author &\kaishu
       \sjtuunderline[150pt]{\sjtu@value@author}
     \\
-      \heiti\sjtu@label@studentnumber &\songti
+      \kaishu\sjtu@label@studentnumber &\kaishu
       \sjtuunderline[150pt]{\sjtu@value@studentnumber}
     \\
-      \heiti\sjtu@label@advisor &\songti
+      \kaishu\sjtu@label@advisor &\kaishu
       \sjtuunderline[150pt]{\sjtu@value@advisor}
     \\  
-      \heiti\sjtu@label@major &\songti
+      \kaishu\sjtu@label@major &\kaishu
       \sjtuunderline[150pt]{\sjtu@value@major}
     \\  
-      \heiti\sjtu@label@defenddate &\songti
-      \sjtuunderline[150pt]{\sjtu@value@defenddate}
+      \kaishu\sjtu@label@institute &\kaishu
+      \sjtuunderline[150pt]{\sjtu@value@institute}
     \end{tabular}
   \end{center}
   \vskip \stretch{0.5}
@@ -306,14 +322,15 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \sjtu@value@school}\\
-  {\bf\zihao{3} \sjtu@label@original}
+  {\bf\zihao{2} \sjtu@value@school}\\
+  \vskip 10pt
+  {\bf\zihao{2} \sjtu@label@original}
   \end{center}
   \vskip 10pt
-  {\zihao{-4}\sjtu@label@originalcontent}
-  \vskip 60pt
+  \doublespacing{\zihao{4}\sjtu@label@originalcontent}
+  \vskip 120pt
   \hspace{13em}\sjtu@label@authorsign\hrulefill\hspace{1.5em}
-  \vskip 15pt
+  \vskip 50pt
   \hspace{16em}\sjtu@label@originalDate\hspace{1em}
   \clearpage
   \if@twoside
@@ -328,13 +345,13 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-  {\bf\zihao{3} \sjtu@value@school}\\
-  {\bf\zihao{3} \sjtu@label@authorization}
+  {\bf\zihao{2} \sjtu@value@school}\\
+  \vskip 10pt
+  {\bf\zihao{2} \sjtu@label@authorization}
   \end{center}
   \vskip 10pt
-  {\zihao{-4} \sjtu@label@authorizationcontent}
-  \vskip 60pt
-  
+  {\zihao{4} \sjtu@label@authorizationcontent}
+  \vskip 60pt  
   \sjtu@label@authorsign\hrulefill\hspace{3em}\sjtu@label@Supervisorsign\hrulefill
   \vskip 15pt
   \sjtu@label@originalDate\hfill\hspace{3em}\sjtu@label@originalDate
@@ -349,14 +366,14 @@
 \fancyhf{}
 \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
 \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-\fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
+\fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{lastpage}}~页~}      % 页脚
 
 
 \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
   \fancyhf{}%
   \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}}  % 奇数页左页眉
   \fancyhead[R]{\small {\it \sjtu@value@titlemark}}                   % 奇数页右页眉
-  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{LastPage}}~页~}      % 页脚
+  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\bf\pageref{lastpage}}~页~}      % 页脚
 }
 
 \fancypagestyle{frontmatter}{ % "frontmatter" page style
@@ -416,7 +433,6 @@
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
-
     
 \newenvironment{publications}[1]
      {\chapter{\sjtu@label@publications}%
@@ -481,10 +497,43 @@
    {\endlist}
    
 \renewenvironment{thanks}
-  {\chapter{\sjtu@label@thanks}}
+  {
+  \chapter{\sjtu@label@thanks}
+   \label{lastpage}
+  }
   {}
   
-\newenvironment{symbolnote}{\chapter{\sjtu@label@symbolnote}}{} 
+\newenvironment{symbolnote}
+  {
+   \chapter{\sjtu@label@symbolnote}
+   }
+   {} 
+
+\newenvironment{bigabstract}
+  {
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}} % 奇数页左页眉
+  \fancyhead[R]{\small {\it \sjtu@value@englishtitle}} % 奇数页左页眉
+  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\pageref{bigabstractlast}}~页~} % 页脚
+%%  \fancyfoot[C]{\small ~第~{\bf\thepage}~页~} % 页脚
+
+
+  \fancypagestyle{plain}{% 设置开章页页眉页脚风格(只有页码作为页脚)
+    \fancyhf{}
+    \fancyhead[L]{\small {\it \includegraphics[width=0.22\textwidth]{sjtubanner}}} % 奇数页左页眉
+    \fancyhead[R]{\small {\it \sjtu@value@englishtitle}} % 奇数页左页眉
+    \fancyfoot[C]{\small ~第~{\bf\thepage}~页~共~{\pageref{bigabstractlast}}~页~} % 页脚
+%%    \fancyfoot[C]{\small ~第~{\bf\thepage}~页~} % 页脚
+    %\renewcommand{\headrulewidth}{0pt}%
+    %\renewcommand{\footrulewidth}{0pt}%
+    }
+
+
+  \chapter*{\normalfont\zihao{3}\bf\textsc\sjtu@value@englishtitle\vskip 20pt}
+  \setcounter{page}{1}
+  }
+  {\label{bigabstractlast}}
 
 \setcounter{secnumdepth}{4}  % 章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)

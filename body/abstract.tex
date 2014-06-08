@@ -9,14 +9,14 @@
 
 \begin{abstract}
 
-    在现今互联网规模和技术随着时间不断发展的背景下，当今世界的数据量以极快的速度增长。国际数据公司（IDC）的研究结果表明，2008年全球产生的数据量为0.49ZB，2009年的数据量为0.8ZB，2010年增长为1.2ZB，2011年的数量更是高达1.82ZB，相当于全球每人产生200GB以上的数据。我们已经进入了一个大数据时代，需要管理的数据资源变得越来越庞大。IBM的一项研究称，整个人类文明所获得的全部数据中，有90\%是在过去的两年产生的，预计到2020年，全世界所产生的数据规模将是今天的44倍。
+    在互联网规模和技术不断发展的背景下，当今世界的数据量以极快的速度增长。国际数据公司（IDC）的研究结果表明2010年增长为1.2ZB。我们已经进入了一个大数据时代，需要管理的数据资源变得越来越庞大。IBM的一项研究称，整个人类文明所获得的全部数据中，有90\%是在过去的两年产生的，预计到2020年，全世界所产生的数据规模将是2010年的44倍。
 
-在上述背景下，互联网上有大量重复的数据，导致重复的上传，重复的存储，浪费了巨大的流量和空间。本课题将研究云文件系统存储大数据的同时，如何有效地检测重复数据，将改进现有的做法，提出一种较新的方法来解决这个问题。本文主要的工作和创新如下：
+在上述背景下，互联网大量重复的数据导致重复的上传，重复的存储，浪费了巨大的流量和空间。本课题将研究云文件系统存储大数据的同时，如何有效地检测重复数据，将改进现有的做法，提出一种较新的方法来解决这个问题。本文主要的工作和创新如下：
 
 \begin{enumerate}
-    \item 比较了现有工业界文件去重的一般方法，调查了一些知名企业的文件去重方法，分析了这些方法的优越点和适应范围，并给出了几个不足之处，例如，随着数据的指数快速增长基于哈希提取文件特征值的方法很快就会遭到碰撞攻击，如MD5已在2004年被国内学者王小云教授破解，另外所有这些方法都不支持相似度的判定，这使得这些方法在某些场景下无法胜任，本文基于此给出了一种较新的可调节的相似文件判定方法。
+    \item 分析了工业界文件去重算法的优点和适应范围，并给出了几个不足之处，例如，随着数据的指数快速增长基于哈希提取文件特征值的方法很快就会遭到碰撞攻击，如MD5已在2004年被国内学者王小云教授破解，另外所有这些方法都不支持相似度的判定，这使得这些方法在某些场景下无法胜任，本文基于此给出了一种较新的可调节的相似文件判定方法。
 
-    \item 提出了一种基于快速傅里叶变换的相似文件检测算法，该算法和传统的算法不同，可以通过调节系统参数$\epsilon$来可调节地适应使用场景。在该算法中的关键技术主要是对文件块的预处理的选取和设计、把文件看成离散的信号从而进行FFT的意义和对N维向量的相似度检测算法，在第四章中将相似说明这个方法的流程框架和算法细节。该方法使得几乎所有场景的去重，相似度检测都能很好得适应。
+    \item 提出了一种基于快速傅里叶变换的相似文件检测算法，该算法和传统的算法不同，可以通过调节系统参数$\epsilon$来可调节地适应使用场景。该算法中的关键技术主要是对文件块的预处理的选取和设计、把文件看成离散的信号从而进行FFT的意义和对N维向量的相似度检测算法，在第四章中将说明这个方法的流程框架和算法细节。该方法使得几乎所有场景的去重都能很好得适应。
 
     \item 基于算法实现了一个Client/Server模式的服务框架原型，供用户使用我们的初版系统。服务器端用nodejs实现，核心算法用C++实现以达到加速的目的，他们之间使用谷歌的V8引擎链接。
 
@@ -27,12 +27,12 @@
 
 \begin{englishabstract}
 
-    With the development of today's Internet-scale and technology, the data capacity is growing at a fast rate. The research from the international data company(IDC) implies that by 2008 the amount of data was 0.8ZB, by 2009 the amount of data was 1.2ZB and by 2011 the amount of data reached up to 1.82ZB, which equals to the amount if everyone in the world generated more than 200GB data. We have entered a world of big data, with the rapid growing of data needed management. A research from IBM shows that among all the data in the human world, 90\% of them are generated in the last two years, and it is estimated that by 2020, the amount of data is 44 times larger than what we have today.
+    With the development of today's Internet-scale and technology, the data capacity is growing at a fast rate. The research from the international data company(IDC) implies that by 2010 the amount of data was 1.2ZB. We have entered a world of big data, with the rapid growing of data needed management. A research from IBM shows that among all the data in the human world, 90\% of them are generated in the last two years, and it is estimated that by 2020, the amount of data is 44 times larger than the data in 2010.
 
     In the background of such situation, there are many duplicated data in the Internet, causing duplicated uploading and duplicated storage which will waste plenty of Internet flow and storage. The topic of our project will focus on how to find out and deduplicate the data, and we also will improve the existing method and propose a Innovative method to solve this kind of question. Our main work and innovation are as follows.
 
 \begin{enumerate}
-    \item we compare the existing methods in the industry and survey the technique used by some well-known companies. We analyze these methods and give some shortcomings. For example, with the growing amount of data, the hash method used by some algorithms is vulnerable in some collision attacks. MD5 is cracked by professor Xiaoyun Wang in 2004. What's more, all these methods can not used to calculate the similarity of two files, making them not sutiable for all situatios. We innovatively propose a similarity judgement of file based on FFT.
+    \item We analyze the existing methonds and give their shortcomings. For example, with the growing amount of data, the hash method used by some algorithms is vulnerable in some collision attacks. MD5 is cracked by professor Xiaoyun Wang in 2004. What's more, all these methods can not used to calculate the similarity of two files, making them not suitable for all situatios. We innovatively propose a similarity judgement of file based on FFT.
 
     \item we propose a new data deduplication method based on FFT. It is different from the traditional methods because we provide a system parameter $\epsilon$ to adapt to nearly all situations. The main technique in this algorithm involves the preprocessing, the meaning of applying FFT to the file, the similarity judgement of N dimention array. In chapter four we will discuss the archtecture and the algorithm itself in detail. This algorithm makes all data deduplication scenarios possible.
 

@@ -53,7 +53,7 @@ int fft(char *file_name, vector<double> &darr) {
 	return THES_SUCC;
 }
 
-int calc_simi(vector<double> &da, vector<double> &db, double &result)
+int calc_simi(const vector<double> &da, const vector<double> &db, double &result)
 {
     if (da.size() != db.size())
     {

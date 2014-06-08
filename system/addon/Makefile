@@ -1,4 +1,4 @@
-all: complex.o fft.o data/pre-fft.o
+all: complex.o fft.o 
 	g++ -o test_check complex.o fft.o test_check.cc
 
 clean:

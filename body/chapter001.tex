@@ -38,7 +38,7 @@
 
 \item 基于内存计算的计算框架
 
-本课题将计算过程放在spark平台上运行。spark是类Hadoop MapReduce的通用并行框架，Spark基于map reduce算法实现的分布式计算，拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是Job中间输出和结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的map reduce的算法。spark有如下优点，首先，Spark的中间数据放到内存中，对于迭代运算效率更高。其次，Spark比Hadoop更通用。另外，spark具有更好的容错性和可用性。
+本课题将计算过程放在spark平台上运行。spark是类Hadoop MapReduce的通用并行框架，Spark基于map reduce算法实现的分布式计算，拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是Job中间输出和结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的map reduce的算法。
 
 \end{enumerate}
 
@@ -78,8 +78,8 @@
         通过相同检测，如果发现有相同的文件块，那么就不用保存这个文件块，只需要将指针指向已经保存下来的文件块即可，这样就实现了重复数据的存储和检测。
 
     \item 数据存储
-
         将不重复的文件块保存在磁盘上，然后将这块文件块的特征值加到库中，供下一次检测时候使用。
+
 \end{enumeate}
 
 在IBM的一篇Research Report\upcite{denehy2003duplicate}中，举了几个运用这些步骤的算法的例子。
