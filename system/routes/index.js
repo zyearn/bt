@@ -3,6 +3,9 @@ var User = require('../models/user.js');
 var Post = require('../models/post.js');
 var fs = require('fs');
 var hello = require('../addon/build/Release/hello.node')
+var clean = require('../addon/build/Release/clean.node')
+
+var exec = require('child_process').exec, child;
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
@@ -23,8 +26,15 @@ module.exports = function(app) {
     });
   });
   
+  app.get('/clean', function(req, res) {
+    var result = clean.clean();
+    console.log('clean result = ' + result)
+    res.render('clean', {
+      title: '清除',
+    });
+  });
+
   app.post('/reg', function(req, res) {
-    console.log("a");
     
     var tmp_path = req.files.upload.path;
     var target_path = './files/' + req.files.upload.name;

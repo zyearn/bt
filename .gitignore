@@ -17,3 +17,5 @@ diss.pdf
 temptest.*
 README.mkd
 README.pdf
+system/node_modules/
+system/addon/build/
